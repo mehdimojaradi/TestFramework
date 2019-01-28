@@ -1,13 +1,23 @@
 {
-    "scripts": {
-        "test": "jest",
-        "coverage": "jest --coverage"
-    },
-    "devDependencies": {
-        "babel-jest": "^23.6.0",
-        "babel-preset-env": "^1.7.0",
-        "chromedriver": "^2.45.0",
-        "jest": "^23.6.0",
-        "selenium-webdriver": "^4.0.0-alpha.1"
-    }
+  "name": "rdsysco_e2e",
+  "version": "1.0.0",
+  "description": "Automated Test Framework",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "author": "RDSysCo QA Team",
+  "license": "ISC",
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "babel-jest": "^23.6.0",
+    "babel-preset-env": "^1.7.0",
+    "chromedriver": "^2.45.0",
+    "jest": "^23.6.0",
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  }
 }
