@@ -1,9 +1,11 @@
+"use strict";
+
 import "chromedriver";
 import { Builder, By, Key, until } from "selenium-webdriver";
 const browser = "chrome";
 const baseUrl = "http://epfc.local/";
 
-export default class Core {
+class Core {
   constructor(url = "") {
     this.driver = new Builder().forBrowser(browser).build();
     this.driver.get(`${baseUrl}${url}`);
@@ -21,3 +23,5 @@ export default class Core {
     return this.driver.findElement(By.css(el));
   }
 }
+
+export default Core;

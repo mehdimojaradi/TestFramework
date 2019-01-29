@@ -1,4 +1,4 @@
-import Login from "../modules/Login";
+import Login from "../src/Modules/Login";
 
 const login = new Login();
 
