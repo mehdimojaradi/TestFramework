@@ -12,7 +12,7 @@ class Login extends Core {
     this.password = password;
   }
 
-  doLogin() {
+  signIn() {
     return new Promise(async (resolve, reject) => {
       try {
         await this.fillElementByCss(USERNAME, this.username);
