@@ -4,7 +4,7 @@ describe("Login", () => {
   beforeAll(() => {
     const login = new Login();
     login.signIn();
-    login.redirect("invoices");
+    login.gotoPage("invoices");
   });
 
   it("should login the form", () => {});
