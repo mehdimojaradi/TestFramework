@@ -12,17 +12,17 @@ class Login extends Core {
     this.password = password;
   }
 
-  signIn() {
+  async signIn() {
     return new Promise(async (resolve, reject) => {
       try {
         await this.fillElementByCss(USERNAME, this.username);
         await this.fillElementByCss(PASSWORD, this.password);
-        await this.clickButton(LOGIN_BUTTON).click();
+        await this.clickButton(LOGIN_BUTTON);
 
-        return resolve(true);
+        return true;
       } catch (e) {
         console.error("Can not login. " + e.message);
-        return reject(false);
+        return false;
       }
     });
   }

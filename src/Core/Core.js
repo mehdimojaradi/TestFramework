@@ -16,12 +16,18 @@ class Core {
     this.driver.get(`${baseUrl}${url}`);
   }
 
-  redirect(url) {
-      this.gotoPage(url);
-  }
-
   fillElementByCss(el, value) {
     this.inspectElement(el).sendKeys(value);
+  }
+
+  async getElementText (el) {
+    try {
+      const $el = await this.driver.findElement(By.css(el));
+      return $el.getText();
+    }
+    catch (e) {
+      console.log (e);
+    }
   }
 
   clickButton(el) {
@@ -29,7 +35,7 @@ class Core {
   }
 
   inspectElement(el) {
-    return this.driver.findElement(By.css(el));
+    return this.driver.findElement(By.xpath(el));
   }
 
 }
