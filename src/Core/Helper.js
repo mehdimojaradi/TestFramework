@@ -1,4 +1,4 @@
-import Core from "../Core/Core";
+import Core from ".";
 
 //#region Login Property 
 const USERNAME = "#username";
@@ -6,19 +6,19 @@ const PASSWORD = "#password";
 const LOGIN_BUTTON =
     "#area > div > div > form > table > tbody > tr:nth-child(5) > td > button";
 
-const usr = "user27";
-const pass = "test123";
+const USR = "user27";
+const PASS = "test123";
 
-const loginUrl = "alarms";
+const LOGIN_URL = "alarms";
 
 //#endregion
 
-export default class epfc extends Core {
+class Helper extends Core {
     constructor() {
         super();
     }
 
-    async signIn(url = loginUrl, username = usr, password = pass) {
+    async signIn(url = LOGIN_URL, username = USR, password = PASS) {
         try {
             await this.gotoPage(url);
             await this.fillElementByCss(USERNAME, username);
@@ -33,3 +33,4 @@ export default class epfc extends Core {
 
 
 }
+export default Helper

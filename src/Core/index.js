@@ -14,10 +14,11 @@ const baseUrl = "http://epfc.local/";
 class Core {
   constructor() {
     this.driver = new Builder().forBrowser(browser).build();
+    jest.setTimeout(30000);
   }
 
   closeDriver() {
-    this.driver.close();
+    this.driver.quit();
   }
 
   async fillElementByCss(el, value) {
@@ -43,24 +44,31 @@ class Core {
 
   inspectElement(el) {
     try {
-      this.driver.wait(until.elementLocated(By.css(el)), 10000, 'Could not locate the child element within the time specified');
       return this.driver.findElement(By.css(el));
     } catch (e) {
       console.error(e);
     }
   }
 
-  async setDelay(value) {
+  async waitForElement(el) {
     try {
-      return await this.driver.sleep(value * 1000);
+      await this.driver.wait(until.elementLocated(By.css(el)), 20000, 'Could not locate the child element within the time specified');
     } catch (e) {
       console.error(e);
     }
   }
 
-  setTimeout(value) {
+  async setDelay(sleep) {
     try {
-      return jest.setTimeout(value * 1000);
+      return await this.driver.sleep(sleep);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  setJestTimeout(timeout) {
+    try {
+      return jest.setTimeout(timeout);
     } catch (e) {
       console.error(e);
     }

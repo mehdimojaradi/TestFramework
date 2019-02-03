@@ -1,19 +1,21 @@
-import EPFC from "../src/Core/epfc";
-let SIGNIN = "alarms"
-const epfc = new EPFC();
+import Helper from "../src/Core/Helper";
+
+//#region Login Property 
+const SIGNIN = "alarms"
+let helper = new Helper();
+const PAGE_TITLE = "#area > div > h1";
+//#endregion
 
 describe("Login", () => {
-    beforeAll(() => {
-        epfc.setTimeout(20);
-    });
+    beforeAll(() => {});
 
     afterAll(() => {
-        epfc.closeDriver();
+        helper.closeDriver();
     });
 
     it("should be sign in", async () => {
-        await epfc.signIn(SIGNIN);
-        await epfc.setDelay(4);
-        await expect(await epfc.getBrowserUrl()).toContain(SIGNIN);
+        await helper.signIn(SIGNIN);
+        await helper.waitForElement(PAGE_TITLE);
+        await expect(await helper.getBrowserUrl()).toContain(SIGNIN);
     });
 });

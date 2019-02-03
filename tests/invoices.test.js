@@ -1,10 +1,13 @@
-import Invoices from "../src/Modules/invoices"
-let INVOICES = "invoices"
-const invoices = new Invoices();
+import Invoices from "../src/Modules/Invoices";
+
+//#region Invoices Property 
+const INVOICES_URL = "invoices";
+let invoices = new Invoices();
+//#endregion
 
 describe("Invoices", () => {
-    beforeAll(() => {
-        invoices.setTimeout(30);
+    beforeAll(async () => {
+        await invoices.signIn(INVOICES_URL);
     });
 
     afterAll(() => {
@@ -12,18 +15,17 @@ describe("Invoices", () => {
     });
 
     it("Should be sign in", async () => {
-        await invoices.signIn(INVOICES);
-        await invoices.setDelay(8);
-        await expect(await invoices.getBrowserUrl()).toContain(INVOICES);
-        const $el = await invoices.getElementText("#area > div > h1");
+        await invoices.waitForElement(invoices.INVOICE_TITLE);
+        const $el = await invoices.getElementText(invoices.INVOICE_TITLE);
         await expect($el).toEqual("Invoices");
+        await expect(await invoices.getBrowserUrl()).toContain(INVOICES_URL);
     });
 
     it("Should be search", async () => {
-        let INVOICENO = '11410';
-        await invoices.search(INVOICENO);
-        await invoices.setDelay(4);
-        const $el = await invoices.getElementText("#invoice-list-tables > div:nth-child(2) > table > tbody:nth-child(2) > tr > td:nth-child(1) > a");
-        await expect($el.trim()).toEqual(INVOICENO);
+        let invoiceNo = '11410';
+        await invoices.search(invoiceNo);
+        await invoices.waitForElement(invoices.INVOICE_NUMBER_LINK);
+        const $el = await invoices.getElementText(invoices.INVOICE_NUMBER_LINK);
+        await expect($el.trim()).toEqual(invoiceNo);
     });
 })
