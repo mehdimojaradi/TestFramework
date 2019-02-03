@@ -1,14 +1,15 @@
-import Login from "../src/Modules/Login";
+import EPFC from "../src/Core/epfc";
+let SIGNIN = "alerts"
+const epfc = new EPFC();
 
 describe("Login", () => {
-  beforeAll(() => {
-    const login = new Login();
-    await login.signIn();
-    login.gotoPage("invoices");
-  });
+    beforeAll(() => {
+    jest.setTimeout(20000);
+    });
 
-  it("should detect label of INVOICES",async () => {
-    const $el = await login.getElementText("#area .content h1");
-    console.log($el); 
-  });
+    it("should detect label of INVOICES", async () => {        
+        await epfc.signIn(SIGNIN);
+        await invoices.setDelay(4);
+        await expect(await invoices.getBrowserUrl()).toContain(SIGNIN);
+    });
 });
