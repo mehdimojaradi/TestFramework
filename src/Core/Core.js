@@ -2,12 +2,14 @@
 
 import "chromedriver";
 import { Builder, By, Key, until } from "selenium-webdriver";
+import { resolve } from "url";
+import { rejects } from "assert";
 
 const browser = "chrome";
 const baseUrl = "http://epfc.local/";
 
 class Core {
-  constructor(url = "") {
+  constructor(url="") {
     this.driver = new Builder().forBrowser(browser).build();
     this.gotoPage(url);
   }
@@ -42,6 +44,10 @@ class Core {
      this.driver.sleep(timeout);
   }
 
+  async waitUntil (el) {
+    await this.driver.wait(until.elementIsVisible(this.driver.findElement(By.css(el)),2000),10000).then(() => {
+      console.log("peyda shod");
+    })
+} 
 }
-
 export default Core;
