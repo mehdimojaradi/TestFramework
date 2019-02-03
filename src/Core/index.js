@@ -1,12 +1,7 @@
 "use strict";
 
 import "chromedriver";
-import {
-  Builder,
-  By,
-  Key,
-  until
-} from "selenium-webdriver";
+import { Builder, By, Key, until } from "selenium-webdriver";
 
 const browser = "chrome";
 const baseUrl = "http://epfc.local/";
@@ -52,7 +47,11 @@ class Core {
 
   async waitForElement(el) {
     try {
-      await this.driver.wait(until.elementLocated(By.css(el)), 20000, 'Could not locate the child element within the time specified');
+      await this.driver.wait(
+        until.elementLocated(By.css(el)),
+        20000,
+        "Could not locate the child element within the time specified"
+      );
     } catch (e) {
       console.error(e);
     }
@@ -72,13 +71,12 @@ class Core {
     } catch (e) {
       console.error(e);
     }
-
   }
 
   async getBrowserUrl() {
     try {
       let $el;
-      await this.driver.getCurrentUrl().then(function (currentUrl) {
+      await this.driver.getCurrentUrl().then(function(currentUrl) {
         $el = currentUrl;
       });
       return $el;
@@ -96,8 +94,6 @@ class Core {
       return false;
     }
   }
-
 }
-
 
 export default Core;
