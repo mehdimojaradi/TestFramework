@@ -1,18 +1,21 @@
-import Login from "../src/Modules/Login";
+import Helper from "../src/Core/Helper";
 
-describe("", () => {
-  const login = new Login();
+//#region Login Property
+const SIGNIN = "alarms";
+let helper = new Helper();
+const PAGE_TITLE = "#area > div > h1";
+//#endregion
 
-  beforeAll(() => {
-    jest.setTimeout(20000);
-  });
-  
-  it("", async () => {
-    await login.gotoPage("alarms");
-    await login.signIn();
-    await login.gotoPage("invoices");
-    await login.waitUntilElementIsVisible("#area");
-    console.log(await login.getElementText('#area > div > h1'));
+describe("Login", () => {
+  beforeAll(() => {});
+
+  afterAll(() => {
+    helper.closeDriver();
   });
 
+  it("should be sign in", async () => {
+    await helper.signIn(SIGNIN);
+    await helper.waitForElement(PAGE_TITLE);
+    await expect(await helper.getBrowserUrl()).toContain(SIGNIN);
+  });
 });
