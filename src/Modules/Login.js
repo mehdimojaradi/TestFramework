@@ -4,7 +4,7 @@ const USERNAME = "#username";
 const PASSWORD = "#password";
 const LOGIN_BUTTON =
   "#area > div > div > form > table > tbody > tr:nth-child(5) > td > button";
-
+  
 class Login extends Core {
   constructor(username = "user27", password = "test123") {
     super();
@@ -13,7 +13,7 @@ class Login extends Core {
   }
 
   async signIn() {
-    return new Promise(async (resolve, reject) => {
+    // return new Promise(async (resolve, reject) => {
       try {
         await this.fillElementByCss(USERNAME, this.username);
         await this.fillElementByCss(PASSWORD, this.password);
@@ -24,7 +24,7 @@ class Login extends Core {
         console.error("Can not login. " + e.message);
         return false;
       }
-    });
+    // });
   }
 }
 

@@ -11,9 +11,13 @@ class Core {
     this.driver = new Builder().forBrowser(browser).build();
     this.gotoPage(url);
   }
-
-  gotoPage(url) {
+  
+  async gotoPage(url) {
     this.driver.get(`${baseUrl}${url}`);
+  }
+
+  inspectElement(el) {
+    return this.driver.findElement(By.css(el));
   }
 
   fillElementByCss(el, value) {
@@ -22,7 +26,7 @@ class Core {
 
   async getElementText (el) {
     try {
-      const $el = await this.driver.findElement(By.css(el));
+      const $el = await this.inspectElement(el);
       return $el.getText();
     }
     catch (e) {
@@ -34,8 +38,8 @@ class Core {
     this.inspectElement(el).click();
   }
 
-  inspectElement(el) {
-    return this.driver.findElement(By.xpath(el));
+  getTimeout(timeout) {
+     this.driver.sleep(timeout);
   }
 
 }

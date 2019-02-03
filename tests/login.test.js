@@ -1,14 +1,19 @@
 import Login from "../src/Modules/Login";
 
 describe("Login", () => {
+  const login = new Login();
+
   beforeAll(() => {
-    const login = new Login();
+    jest.setTimeout(20000);
+  });
+  
+  it("should detect label of INVOICES", async () => {
+    await login.gotoPage("alarms");
     await login.signIn();
-    login.gotoPage("invoices");
+    await login.gotoPage("invoices");
+    await login.getTimeout(10000);
+    const $el = await login.getElementText("#area > div > h1");
+    console.log($el);
   });
 
-  it("should detect label of INVOICES",async () => {
-    const $el = await login.getElementText("#area .content h1");
-    console.log($el); 
-  });
 });
