@@ -44,10 +44,13 @@ class Core {
      this.driver.sleep(timeout);
   }
 
-  async waitUntil (el) {
-    await this.driver.wait(until.elementIsVisible(this.driver.findElement(By.css(el)),2000),10000).then(() => {
-      console.log("peyda shod");
-    })
-} 
+  async waitUntilElementIsVisible (el) {
+    try {
+      await this.driver.wait(until.elementLocated(By.css(el), 2000, 'messssssage'));
+    } catch (e) {
+      console.log(e);
+    }
+  } 
+  
 }
 export default Core;
