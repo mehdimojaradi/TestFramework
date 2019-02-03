@@ -1,32 +1,30 @@
 import Helper from "../Core/Helper";
 
-//#region Invoice Property
-const _INVOICE_NUMBER_LINK =
-  "#invoice-list-tables > div:nth-child(2) > table > tbody:nth-child(2) > tr > td:nth-child(1) > a";
-const _INVOICE_TITLE = "#area > div > h1";
-const INVOICE_NO_ID = "#invoice_number_id";
-const SEARCH_BUTTON =
-  '#ui-tabs-1 > div > fieldset > form > div > input[type="submit"]:nth-child(2)';
-//#endregion
 
 class Invoices extends Helper {
   constructor() {
     super();
+    this._regions = {
+      invoices_url: "invoices",
+      invoice_title: "#area > div > h1",
+      invoice_number_link:
+        "#invoice-list-tables > div:nth-child(2) > table > tbody:nth-child(2) > tr > td:nth-child(1) > a",
+      invoice_title: "#area > div > h1",
+      invoice_no_id: "#invoice_number_id",
+      search_button:
+        '#ui-tabs-1 > div > fieldset > form > div > input[type="submit"]:nth-child(2)'
+    };
+  }
+  
+  region(name) {
+    return this._regions[name];
   }
 
-  get INVOICE_NUMBER_LINK() {
-    return _INVOICE_NUMBER_LINK;
-  }
-
-  get INVOICE_TITLE() {
-    return _INVOICE_TITLE;
-  }
-
-  async search(invoiceNO) {
+  async search(invoiceNumber) {
     try {
-      await this.waitForElement(INVOICE_NO_ID);
-      await this.fillElementByCss(INVOICE_NO_ID, invoiceNO);
-      await this.clickButton(SEARCH_BUTTON);
+      await this.waitForElement(this.region("invoice_no_id"));
+      await this.fillElementByCss(this.region("invoice_no_id"), invoiceNumber);
+      await this.clickButton(this.region("search_button"));
       return true;
     } catch (e) {
       console.error(`Can not search. ${e}`);
