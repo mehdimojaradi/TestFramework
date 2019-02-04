@@ -1,14 +1,25 @@
 "use strict";
 
 import "chromedriver";
+const chrome = require("selenium-webdriver/chrome");
+const firefox = require("selenium-webdriver/firefox");
 import { Builder, By, Key, until } from "selenium-webdriver";
+
+const screen = {
+  width: 1280,
+  height: 1024
+};
 
 const browser = "chrome";
 const baseUrl = "http://devqa.rdsysco.com/";
 
 class Core {
   constructor() {
-    this.driver = new Builder().forBrowser(browser).build();
+    this.driver = new Builder()
+      .forBrowser(browser)
+      .setChromeOptions(new chrome.Options().headless().windowSize(screen))
+      .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
+      .build();
     jest.setTimeout(30000);
   }
 
