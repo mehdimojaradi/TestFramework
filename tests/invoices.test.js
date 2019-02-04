@@ -1,29 +1,29 @@
-import Invoices from "../src/Modules/Invoices";
-import invoices_json from "../src/Modules/Invoices/invoices";
+import InvoicePage from "../src/Modules/Invoices";
+import invoice from "../src/Modules/Invoices/invoice";
 
-const INVOICES = new Invoices();
+let invoicePage = new InvoicePage();
 
 describe("Invoices", () => {
   beforeAll(async () => {
-    await INVOICES.signIn(invoices_json.invoices_url);
+    await invoicePage.signIn(invoice.url);
   });
 
   afterAll(() => {
-    INVOICES.closeDriver();
+    invoicePage.closeDriver();
   });
 
   it("Should be sign in", async () => {
-    await INVOICES.waitForElement(invoices_json.invoice_title);
-    const $el = await INVOICES.getElementText(invoices_json.invoice_title);
+    await invoicePage.waitForElement(invoice.title);
+    const $el = await invoicePage.getElementText(invoice.title);
     await expect($el).toEqual("Invoices");
-    await expect(await INVOICES.getBrowserUrl()).toContain(invoices_json.invoices_url);
+    await expect(await invoicePage.getBrowserUrl()).toContain(invoice.url);
   });
 
   it("Should be search", async () => {
-    let invoiceNo = "11410";
-    await INVOICES.search(invoiceNo);
-    await INVOICES.waitForElement(invoices_json.invoice_number_link);
-    const $el = await INVOICES.getElementText(invoices_json.invoice_number_link);
-    await expect($el.trim()).toEqual(invoiceNo);
+    let id = "11410";
+    await invoicePage.findInvoiceBy(id);
+    await invoicePage.waitForElement(invoice.number_link);
+    const $el = await invoicePage.getElementText(invoice.number_link);
+    await expect($el.trim()).toEqual(id);
   });
 });

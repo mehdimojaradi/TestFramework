@@ -4,7 +4,7 @@ import "chromedriver";
 import { Builder, By, Key, until } from "selenium-webdriver";
 
 const browser = "chrome";
-const baseUrl = "http://epfc.local/";
+const baseUrl = "http://devqa.rdsysco.com/";
 
 class Core {
   constructor() {

@@ -1,16 +1,16 @@
 import Helper from "../../Core/Helper";
-import invoices_json from "../Invoices/invoices";
+import invoice from "../Invoices/invoice";
 
-class Invoices extends Helper {
+class InvoicePage extends Helper {
   constructor() {
     super();
   }
 
-  async search(invoiceNumber) {
+  async findInvoiceBy(number) {
     try {
-      await this.waitForElement(invoices_json.invoice_no_id);
-      await this.fillElementByCss(invoices_json.invoice_no_id, invoiceNumber);
-      await this.clickButton(invoices_json.search_button);
+      await this.waitForElement(invoice.id);
+      await this.fillElementByCss(invoice.id, number);
+      await this.clickButton(invoice.search_button);
       return true;
     } catch (e) {
       console.error(`Can not search. ${e}`);
@@ -19,4 +19,4 @@ class Invoices extends Helper {
   }
 }
 
-export default Invoices;
+export default InvoicePage;
