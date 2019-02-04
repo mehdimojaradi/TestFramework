@@ -1,17 +1,12 @@
 import Core from ".";
 
-//#region Login Property
-const USERNAME = "#username";
-const PASSWORD = "#password";
-const LOGIN_BUTTON =
-  "#area > div > div > form > table > tbody > tr:nth-child(5) > td > button";
-
-const USR = "user27";
-const PASS = "test123";
-
-const LOGIN_URL = "alarms";
-
-//#endregion
+const USERNAME = "#username",
+      PASSWORD = "#password",
+      LOGIN_BUTTON =
+        "#area > div > div > form > table > tbody > tr:nth-child(5) > td > button",
+      USR = "user27",
+      PASS = "test123",
+      LOGIN_URL = "alarms";
 
 class Helper extends Core {
   constructor() {
@@ -29,6 +24,10 @@ class Helper extends Core {
       console.error(`Can not login. ${e.message}`);
       return false;
     }
+  }
+
+  getDataProvider() {
+    return this.constructor.name.toLowerCase() + ".json";
   }
 }
 export default Helper;

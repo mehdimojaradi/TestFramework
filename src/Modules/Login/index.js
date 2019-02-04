@@ -1,4 +1,4 @@
-import Core from "../Core/Core";
+import Core from "../../Core";
 
 const USERNAME = "#username";
 const PASSWORD = "#password";

@@ -1,30 +1,29 @@
 import Invoices from "../src/Modules/Invoices";
+import invoices_json from "../src/Modules/Invoices/invoices";
 
-//#region Invoices Property
-let invoices = new Invoices();
-//#endregion
+const INVOICES = new Invoices();
 
 describe("Invoices", () => {
   beforeAll(async () => {
-    await invoices.signIn(invoices.region("invoices_url"));
+    await INVOICES.signIn(invoices_json.invoices_url);
   });
 
   afterAll(() => {
-    invoices.closeDriver();
+    INVOICES.closeDriver();
   });
 
   it("Should be sign in", async () => {
-    await invoices.waitForElement(invoices.region("invoice_title"));
-    const $el = await invoices.getElementText(invoices.region("invoice_title"));
+    await INVOICES.waitForElement(invoices_json.invoice_title);
+    const $el = await INVOICES.getElementText(invoices_json.invoice_title);
     await expect($el).toEqual("Invoices");
-    await expect(await invoices.getBrowserUrl()).toContain(invoices.region("invoices_url"));
+    await expect(await INVOICES.getBrowserUrl()).toContain(invoices_json.invoices_url);
   });
 
   it("Should be search", async () => {
     let invoiceNo = "11410";
-    await invoices.search(invoiceNo);
-    await invoices.waitForElement(invoices.region("invoice_number_link"));
-    const $el = await invoices.getElementText(invoices.region("invoice_number_link"));
+    await INVOICES.search(invoiceNo);
+    await INVOICES.waitForElement(invoices_json.invoice_number_link);
+    const $el = await INVOICES.getElementText(invoices_json.invoice_number_link);
     await expect($el.trim()).toEqual(invoiceNo);
   });
 });
