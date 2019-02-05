@@ -8,9 +8,9 @@ class InvoicePage extends Helper {
 
   async findInvoiceBy(number) {
     try {
-      await this.waitForElement(invoice.id);
-      await this.fillElementByCss(invoice.id, number);
-      await this.clickButton(invoice.search_button);
+      await this.waitForElement(invoice.$id);
+      await this.fillElementByCss(invoice.$id, number);
+      await this.clickButton(invoice.$search_button);
       return true;
     } catch (e) {
       console.error(`Can not search. ${e}`);

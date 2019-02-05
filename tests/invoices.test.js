@@ -13,8 +13,8 @@ describe("Invoices", () => {
   });
 
   it("Should be sign in", async () => {
-    await invoicePage.waitForElement(invoice.title);
-    const $el = await invoicePage.getElementText(invoice.title);
+    await invoicePage.waitForElement(invoice.$title);
+    const $el = await invoicePage.getElementText(invoice.$title);
     await expect($el).toEqual("Invoices");
     await expect(await invoicePage.getBrowserUrl()).toContain(invoice.url);
   });
@@ -22,8 +22,8 @@ describe("Invoices", () => {
   it("Should be search", async () => {
     let id = "11410";
     await invoicePage.findInvoiceBy(id);
-    await invoicePage.waitForElement(invoice.number_link);
-    const $el = await invoicePage.getElementText(invoice.number_link);
+    await invoicePage.waitForElement(invoice.$number_link);
+    const $el = await invoicePage.getElementText(invoice.$number_link);
     await expect($el.trim()).toEqual(id);
   });
 });
