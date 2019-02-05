@@ -1,24 +1,17 @@
 import Core from ".";
-
-const USERNAME = "#username",
-      PASSWORD = "#password",
-      LOGIN_BUTTON =
-        "#area > div > div > form > table > tbody > tr:nth-child(5) > td > button",
-      USR = "user27",
-      PASS = "test123",
-      LOGIN_URL = "alarms";
+import login from "./login";
 
 class Helper extends Core {
   constructor() {
     super();
   }
 
-  async signIn(url = LOGIN_URL, username = USR, password = PASS) {
+  async signIn(url=login.default_url, username=login.usr, password=login.pwd) {
     try {
       await this.gotoPage(url);
-      await this.fillElementByCss(USERNAME, username);
-      await this.fillElementByCss(PASSWORD, password);
-      await this.clickButton(LOGIN_BUTTON);
+      await this.fillElementByCss(login.$username, username);
+      await this.fillElementByCss(login.$password, password);
+      await this.clickButton(login.$login_button);
       return true;
     } catch (e) {
       console.error(`Can not login. ${e.message}`);

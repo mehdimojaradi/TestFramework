@@ -1,21 +1,20 @@
 import Helper from "../src/Core/Helper";
-
-//#region Login Property
-const SIGNIN = "alarms";
-let helper = new Helper();
-const PAGE_TITLE = "#area > div > h1";
-//#endregion
+import login from "../src/Core/login";
 
 describe("Login", () => {
-  beforeAll(() => {});
+  let helper;
+
+  beforeAll(() => {
+    helper = new Helper();
+  });
 
   afterAll(() => {
     helper.closeDriver();
   });
 
   it("should be sign in", async () => {
-    await helper.signIn(SIGNIN);
-    await helper.waitForElement(PAGE_TITLE);
-    await expect(await helper.getBrowserUrl()).toContain(SIGNIN);
+    await helper.signIn();
+    await helper.waitForElement(login.$default_page_title);
+    await expect(await helper.getBrowserUrl()).toContain(login.default_url);
   });
 });
