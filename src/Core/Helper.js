@@ -1,17 +1,17 @@
 import Core from ".";
-import helper from "./helper.json";
+import login from "./login";
 
 class Helper extends Core {
   constructor() {
     super();
   }
 
-  async signIn(url=helper.login_url, username=helper.usr, password=helper.pwd) {
+  async signIn(url=login.default_url, username=login.usr, password=login.pwd) {
     try {
       await this.gotoPage(url);
-      await this.fillElementByCss(helper.$username, username);
-      await this.fillElementByCss(helper.$password, password);
-      await this.clickButton(helper.$login_button);
+      await this.fillElementByCss(login.$username, username);
+      await this.fillElementByCss(login.$password, password);
+      await this.clickButton(login.$login_button);
       return true;
     } catch (e) {
       console.error(`Can not login. ${e.message}`);
