@@ -18,7 +18,9 @@ class Core {
 
   async fillElementByCss(el, value) {
     try {
-      await this.inspectElement(el).sendKeys(value);
+      let $el = await this.inspectElement(el);
+      await $el.clear();
+      await $el.sendKeys(value);
     } catch (e) {
       console.error(e);
     }
@@ -58,9 +60,9 @@ class Core {
   }
 
   async elementIsVisible(el) {
-      let query = `return document.querySelectorAll('${el}').length;`
-      let elCount = await this.driver.executeScript(query);
-      return (elCount === 0) ? false : true;
+    let query = `return document.querySelectorAll('${el}').length;`
+    let elCount = await this.driver.executeScript(query);
+    return (elCount === 0) ? false : true;
   }
 
   async setDelay(sleep) {
