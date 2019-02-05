@@ -87,7 +87,7 @@ class Core {
 
   async gotoPage(url) {
     try {
-      await this.driver.get(`${baseUrl}${url}`); //${baseUrl}
+      await this.driver.get(`${baseUrl}${url}`);
       return true;
     } catch (e) {
       console.error(`Can not go to page '${url}'. ${e.message}`);
