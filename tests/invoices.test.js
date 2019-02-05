@@ -20,7 +20,7 @@ describe("Invoices", () => {
   });
 
   it("Should be search", async () => {
-    let id = "11410";
+    let id = "114101";
     await invoicePage.findInvoiceBy(id);
     await invoicePage.waitForElement(invoice.number_link);
     const $el = await invoicePage.getElementText(invoice.number_link);
