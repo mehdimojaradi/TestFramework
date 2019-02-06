@@ -106,9 +106,9 @@ class Core {
     }
   }
 
-  async getSelectedValue() {
+  async getSelectedValue(el, option) {
     try {
-      let query = `document.querySelector("#client_id").selectedIndex = 2`;
+      const query = `document.querySelector('${el}').options[document.querySelector('${el}').selectedIndex].text = "${option}"`;
       await this.driver.executeScript(query);
     } catch (e) {
       console.log(e);
