@@ -4,7 +4,7 @@ import "chromedriver";
 import { Builder, By, Key, until } from "selenium-webdriver";
 
 const browser = "chrome";
-const baseUrl = "http://epfc.local/";
+const baseUrl = "http://devqa.rdsysco.com/";
 
 class Core {
   constructor() {
@@ -18,7 +18,9 @@ class Core {
 
   async fillElementByCss(el, value) {
     try {
-      await this.inspectElement(el).sendKeys(value);
+      let $el = await this.inspectElement(el);
+      await $el.clear();
+      await $el.sendKeys(value);
     } catch (e) {
       console.error(e);
     }
@@ -57,6 +59,12 @@ class Core {
     }
   }
 
+  async elementIsVisible(el) {
+    let query = `return document.querySelectorAll('${el}').length;`
+    let elCount = await this.driver.executeScript(query);
+    return (elCount === 0) ? false : true;
+  }
+
   async setDelay(sleep) {
     try {
       return await this.driver.sleep(sleep);
@@ -76,7 +84,7 @@ class Core {
   async getBrowserUrl() {
     try {
       let $el;
-      await this.driver.getCurrentUrl().then(function(currentUrl) {
+      await this.driver.getCurrentUrl().then(function (currentUrl) {
         $el = currentUrl;
       });
       return $el;
@@ -87,7 +95,7 @@ class Core {
 
   async gotoPage(url) {
     try {
-      await this.driver.get(`${baseUrl}${url}`); //${baseUrl}
+      await this.driver.get(`${baseUrl}${url}`);
       return true;
     } catch (e) {
       console.error(`Can not go to page '${url}'. ${e.message}`);

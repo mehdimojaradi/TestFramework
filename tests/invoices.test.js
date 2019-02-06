@@ -1,31 +1,42 @@
-import Invoices from "../src/Modules/Invoices";
+import InvoicePage from "../src/Modules/Invoices";
+import invoice from "../src/Modules/Invoices/invoice";
 
-//#region Invoices Property
-const INVOICES_URL = "invoices";
-let invoices = new Invoices();
-//#endregion
+let invoicePage = new InvoicePage();
 
 describe("Invoices", () => {
   beforeAll(async () => {
-    await invoices.signIn(INVOICES_URL);
+    await invoicePage.signIn(invoice.url);
   });
 
   afterAll(() => {
-    invoices.closeDriver();
+    invoicePage.closeDriver();
   });
 
-  it("Should be sign in", async () => {
-    await invoices.waitForElement(invoices.INVOICE_TITLE);
-    const $el = await invoices.getElementText(invoices.INVOICE_TITLE);
+  it("should sign in", async () => {
+    await invoicePage.waitForElement(invoice.$title);
+    const $el = await invoicePage.getElementText(invoice.$title);
     await expect($el).toEqual("Invoices");
-    await expect(await invoices.getBrowserUrl()).toContain(INVOICES_URL);
+    await expect(await invoicePage.getBrowserUrl()).toContain(invoice.url);
   });
 
-  it("Should be search", async () => {
-    let invoiceNo = "11410";
-    await invoices.search(invoiceNo);
-    await invoices.waitForElement(invoices.INVOICE_NUMBER_LINK);
-    const $el = await invoices.getElementText(invoices.INVOICE_NUMBER_LINK);
-    await expect($el.trim()).toEqual(invoiceNo);
+  it("should find invoice", async () => {
+    let id = "11410";
+    await invoicePage.findInvoiceBy(id);
+    await invoicePage.waitForElement(invoice.$number_link);
+    const $el = await invoicePage.getElementText(invoice.$number_link);
+    await expect($el.trim()).toEqual(id);
+  });
+
+  it("should edit general invoice item", async () => {
+    let id = "11438";
+    await invoicePage.findInvoiceBy(id);
+    await invoicePage.waitForElement(invoice.$number_link);
+    await invoicePage.clickButton(invoice.$number_link);
+    await invoicePage.waitForElement(invoice.$edit_item_dialog_button);
+    await invoicePage.clickButton(invoice.$edit_item_dialog_button);
+    await invoicePage.waitForElement(invoice.$edit_item_dialog_save_button);
+    await invoicePage.clickButton(invoice.$edit_item_dialog_save_button);
+    let isVisible_dialog = await invoicePage.elementIsVisible(invoice.$edit_item_dialog);
+    await expect(isVisible_dialog).toEqual(false);
   });
 });
