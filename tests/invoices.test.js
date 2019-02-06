@@ -41,4 +41,10 @@ describe("Invoices", () => {
     let isVisible_dialog = await invoicePage.elementIsVisible(invoice.$edit_item_dialog);
     await expect(isVisible_dialog).toEqual(false);
   });
+
+  it("should get dropdown value", async () => {
+    await invoicePage.waitForElement("#client_id");
+    await invoicePage.getSelectedValue();
+    invoicePage.setDelay(2000);
+  });
 });
