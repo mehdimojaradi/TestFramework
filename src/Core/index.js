@@ -1,24 +1,29 @@
 "use strict";
 
 import "chromedriver";
+import { Builder, By, Key, until, Capabilities } from "selenium-webdriver";
 const chrome = require("selenium-webdriver/chrome");
 const firefox = require("selenium-webdriver/firefox");
-import { Builder, By, Key, until } from "selenium-webdriver";
-
-const screen = {
-  width: 1280,
-  height: 1024
-};
 
 const browser = "chrome";
 const baseUrl = "http://devqa.rdsysco.com/";
 
 class Core {
   constructor() {
+    this.chromeOptions = new chrome.Options();
+    this.chromeOptions.addArguments("headless");
+    this.chromeOptions.addArguments("disable-gpu");
+
+    this.firefoxOptions = new firefox.Options();
+    this.firefoxOptions.addArguments("headless");
+    this.firefoxOptions.addArguments("disable-gpu");
+
     this.driver = new Builder()
       .forBrowser(browser)
-      .setChromeOptions(new chrome.Options().headless().windowSize(screen))
-      .setFirefoxOptions(new firefox.Options().headless().windowSize(screen))
+      .withCapabilities(Capabilities.chrome())
+      .setChromeOptions(this.chromeOptions)
+      .withCapabilities(Capabilities.firefox())
+      .setFirefoxOptions(this.firefoxOptions)
       .build();
     jest.setTimeout(30000);
   }
@@ -71,9 +76,9 @@ class Core {
   }
 
   async elementIsVisible(el) {
-    let query = `return document.querySelectorAll('${el}').length;`
+    let query = `return document.querySelectorAll('${el}').length;`;
     let elCount = await this.driver.executeScript(query);
-    return (elCount === 0) ? false : true;
+    return elCount === 0 ? false : true;
   }
 
   async setDelay(sleep) {
@@ -95,7 +100,7 @@ class Core {
   async getBrowserUrl() {
     try {
       let $el;
-      await this.driver.getCurrentUrl().then(function (currentUrl) {
+      await this.driver.getCurrentUrl().then(function(currentUrl) {
         $el = currentUrl;
       });
       return $el;
