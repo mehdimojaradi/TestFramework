@@ -4,7 +4,7 @@
   "description": "Automated Test Framework",
   "main": "index.js",
   "directories": {
-    "test": "tests"
+    "test": "src/Modules"
   },
   "dependencies": {},
   "author": "RDSysCo QA Team",

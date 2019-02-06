@@ -1,5 +1,5 @@
-import Helper from "../src/Core/Helper";
-import login from "../src/Core/login";
+import Helper from "../../../Core/Helper";
+import login from "../../../Core/login";
 
 describe("Login", () => {
   let helper;
