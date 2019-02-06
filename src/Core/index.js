@@ -9,7 +9,7 @@ const baseUrl = "http://devqa.rdsysco.com/";
 class Core {
   constructor() {
     this.driver = new Builder().forBrowser(browser).build();
-    jest.setTimeout(30000);
+    this.setJestTimeout(30000);
   }
 
   closeDriver() {
@@ -59,10 +59,13 @@ class Core {
     }
   }
 
-  async elementIsVisible(el) {
-    let query = `return document.querySelectorAll('${el}').length;`
-    let elCount = await this.driver.executeScript(query);
-    return (elCount === 0) ? false : true;
+  async elementIsDisplayed(el) {
+    try {
+      const $el = await this.driver.findElement(By.css(el));
+      return await $el.isDisplayed();
+    } catch (e) {
+      return false;
+    }
   }
 
   async setDelay(sleep) {
@@ -84,7 +87,7 @@ class Core {
   async getBrowserUrl() {
     try {
       let $el;
-      await this.driver.getCurrentUrl().then(function (currentUrl) {
+      await this.driver.getCurrentUrl().then(function(currentUrl) {
         $el = currentUrl;
       });
       return $el;
@@ -100,6 +103,15 @@ class Core {
     } catch (e) {
       console.error(`Can not go to page '${url}'. ${e.message}`);
       return false;
+    }
+  }
+
+  async getSelectedValue() {
+    try {
+      let query = `document.querySelector("#client_id").selectedIndex = 2`;
+      await this.driver.executeScript(query);
+    } catch (e) {
+      console.log(e);
     }
   }
 }
