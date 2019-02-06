@@ -102,6 +102,15 @@ class Core {
       return false;
     }
   }
+
+  async getSelectedValue() {
+    try {
+      let query = `document.querySelector("#client_id").selectedIndex = 2`;
+      await this.driver.executeScript(query);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 export default Core;
