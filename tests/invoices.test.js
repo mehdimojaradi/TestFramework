@@ -36,8 +36,8 @@ describe("Invoices", () => {
     await invoicePage.clickButton(invoice.$edit_item_dialog_button);
     await invoicePage.waitForElement(invoice.$edit_item_dialog_save_button);
     await invoicePage.clickButton(invoice.$edit_item_dialog_save_button);
-    let isVisible_dialog = await invoicePage.elementIsVisible(invoice.$edit_item_dialog);
-    await expect(isVisible_dialog).toEqual(false);
+    const isVisible_dialog = await invoicePage.elementIsDisplayed(invoice.$edit_item_dialog);
+    await expect(isVisible_dialog).toBeFalsy();
   });
 
   it("should get dropdown value", async () => {
