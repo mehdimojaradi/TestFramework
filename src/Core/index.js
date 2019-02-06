@@ -1,5 +1,5 @@
 "use strict";
-//#region 
+
 import "chromedriver";
 import { Builder, By, Key, until } from "selenium-webdriver";
 
@@ -102,7 +102,7 @@ class Core {
       return false;
     }
   }
-//#endregion
+
   async getSelectedValue() {
     try {
       let query = `document.querySelector("#client_id").selectedIndex = 2`;
