@@ -1,7 +1,7 @@
 import InvoicePage from "./index";
 import invoice from "../Elements/invoice";
 
-class GeneralLikeEditPage extends InvoicePage {
+class GeneralEditPage extends InvoicePage {
     constructor() {
         super();
     }
@@ -19,4 +19,4 @@ class GeneralLikeEditPage extends InvoicePage {
     }
 }
 
-export default GeneralLikeEditPage;
+export default GeneralEditPage;
