@@ -1,5 +1,5 @@
 "use strict";
-
+//#region 
 import "chromedriver";
 import { Builder, By, Key, until } from "selenium-webdriver";
 
@@ -9,7 +9,7 @@ const baseUrl = "http://devqa.rdsysco.com/";
 class Core {
   constructor() {
     this.driver = new Builder().forBrowser(browser).build();
-    jest.setTimeout(30000);
+    this.setJestTimeout(30000);
   }
 
   closeDriver() {
@@ -92,6 +92,15 @@ class Core {
     } catch (e) {
       console.error(`Can not go to page '${url}'. ${e.message}`);
       return false;
+    }
+  }
+//#endregion
+  async getSelectedValue() {
+    try {
+      let query = `document.querySelector("#client_id").selectedIndex = 2`;
+      await this.driver.executeScript(query);
+    } catch (e) {
+      console.log(e);
     }
   }
 }

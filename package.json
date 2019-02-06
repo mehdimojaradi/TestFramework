@@ -10,7 +10,7 @@
   "author": "RDSysCo QA Team",
   "license": "ISC",
   "scripts": {
-    "test": "jest",
+    "test": "clear && jest",
     "coverage": "jest --coverage"
   },
   "devDependencies": {
