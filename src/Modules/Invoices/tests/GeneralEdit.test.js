@@ -1,5 +1,5 @@
 import GeneralEditPage from "../PageObjects/GeneralEdit";
-import invoice from "../Elements/invoice";
+import invoice from "../Elements/Invoice";
 import generalEdit from "../Elements/GeneralEdit";
 
 describe("Edit general like invoice", () => {

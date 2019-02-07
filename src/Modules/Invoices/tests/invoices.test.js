@@ -1,5 +1,5 @@
 import InvoicePage from "../PageObjects";
-import invoice from "../Elements/invoice";
+import invoice from "../Elements/Invoice";
 
 describe("Invoices", () => {
   let invoicePage;
@@ -32,8 +32,7 @@ describe("Invoices", () => {
     await expect($el.trim()).toEqual(id);
     await invoicePage.setDelay(3000);
   });
-
-  
+ 
   it("should get dropdown value", async () => {
     const $client_option = "AltaGas Processing Partnership";
     await invoicePage.waitForElement(invoice.$client_el);
