@@ -1,8 +1,0 @@
-{
-  "url": "invoices",
-  "$title": "#area > div > h1",
-  "$number_link": "#invoice-list-tables > div:nth-child(2) > table > tbody:nth-child(2) > tr > td:nth-child(1) > a",
-  "$id": "#invoice_number_id",
-  "$search_button": "#ui-tabs-1 > div > fieldset > form > div > input[type='submit']:nth-child(2)",
-  "$client_el": "#client_id"
-}

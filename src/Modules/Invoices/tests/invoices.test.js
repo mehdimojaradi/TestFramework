@@ -38,4 +38,5 @@ describe("Invoices", () => {
     await invoicePage.waitForElement(invoice.$client_el);
     await invoicePage.getSelectedValue(invoice.$client_el, $client_option);
   });
+  
 });

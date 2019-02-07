@@ -52,16 +52,25 @@ class Core {
       await this.driver.wait(
         until.elementLocated(By.css(el)),
         20000,
-        "Could not locate the child element within the time specified"
+        `Could not locate the element "${el}"`
       );
     } catch (e) {
       console.error(e);
     }
   }
 
-  async elementIsDisplayed(el) {
+  async hasClass(el){
     try {
-      const $el = await this.driver.findElement(By.css(el));
+      const $el = await this.driver.findElement(By.className(el));
+      return await $el.isDisplayed();
+    } catch (e) {
+      return false;
+    }
+  }
+
+  async IsDisplayed(el) {
+    try {
+      const $el = await this.inspectElement(el);
       return await $el.isDisplayed();
     } catch (e) {
       return false;
