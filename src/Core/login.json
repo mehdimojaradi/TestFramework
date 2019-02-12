@@ -1,9 +1,0 @@
-{
-    "$username": "#username",
-    "$password": "#password",
-    "$login_button": "#area > div > div > form > table > tbody > tr:nth-child(5) > td > button",
-    "usr": "user27",
-    "pwd": "test123",
-    "default_url": "alarms",
-    "$default_page_title": "#area > div > h1"
-}
