@@ -1,29 +1,22 @@
 "use strict";
 
 import "chromedriver";
-import { Builder, By, Key, until, Capabilities } from "selenium-webdriver";
+import { Builder, By, Key, until } from "selenium-webdriver";
 const chrome = require("selenium-webdriver/chrome");
 const firefox = require("selenium-webdriver/firefox");
 
 const browser = "chrome";
 const baseUrl = "http://devqa.rdsysco.com/";
+const screen = {
+  width: 1280,
+  height: 1024
+};
 
 class Core {
   constructor() {
-    this.chromeOptions = new chrome.Options();
-    this.chromeOptions.addArguments("headless");
-    this.chromeOptions.addArguments("disable-gpu");
-
-    this.firefoxOptions = new firefox.Options();
-    this.firefoxOptions.addArguments("headless");
-    this.firefoxOptions.addArguments("disable-gpu");
-
     this.driver = new Builder()
       .forBrowser(browser)
-      .withCapabilities(Capabilities.chrome())
-      .setChromeOptions(this.chromeOptions)
-      .withCapabilities(Capabilities.firefox())
-      .setFirefoxOptions(this.firefoxOptions)
+      .setChromeOptions(new chrome.Options().headless().windowSize(screen))
       .build();
     jest.setTimeout(30000);
   }
@@ -75,7 +68,7 @@ class Core {
     }
   }
 
-  async hasClass(el){
+  async hasClass(el) {
     try {
       const $el = await this.driver.findElement(By.className(el));
       return await $el.isDisplayed();
