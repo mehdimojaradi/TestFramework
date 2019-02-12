@@ -1,5 +1,5 @@
 import Core from ".";
-import login from "./login";
+import login from "./Login";
 
 class Helper extends Core {
   constructor() {
