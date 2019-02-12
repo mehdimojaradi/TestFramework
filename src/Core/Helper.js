@@ -21,6 +21,6 @@ class Helper extends Core {
 
   getDataProvider() {
     return this.constructor.name.toLowerCase() + ".json";
-  }
+  }  
 }
 export default Helper;

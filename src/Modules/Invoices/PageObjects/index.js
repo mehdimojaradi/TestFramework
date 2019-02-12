@@ -1,5 +1,5 @@
-import Helper from "../../Core/Helper";
-import invoice from "./invoice";
+import Helper from "../../../Core/Helper";
+import invoice from "../Elements/invoice";
 
 class InvoicePage extends Helper {
   constructor() {

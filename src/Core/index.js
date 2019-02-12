@@ -75,10 +75,13 @@ class Core {
     }
   }
 
-  async elementIsVisible(el) {
-    let query = `return document.querySelectorAll('${el}').length;`;
-    let elCount = await this.driver.executeScript(query);
-    return elCount === 0 ? false : true;
+  async elementIsDisplayed(el) {
+    try {
+      const $el = await this.driver.findElement(By.css(el));
+      return await $el.isDisplayed();
+    } catch (e) {
+      return false;
+    }
   }
 
   async setDelay(sleep) {
@@ -116,6 +119,15 @@ class Core {
     } catch (e) {
       console.error(`Can not go to page '${url}'. ${e.message}`);
       return false;
+    }
+  }
+
+  async getSelectedValue(el, option) {
+    try {
+      const query = `document.querySelector('${el}').options[document.querySelector('${el}').selectedIndex].text = "${option}"`;
+      await this.driver.executeScript(query);
+    } catch (e) {
+      console.log(e);
     }
   }
 }
