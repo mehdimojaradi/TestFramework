@@ -1,0 +1,10 @@
+{
+    "$ivoice_Type_el":"select[name=\"invoices[invoice_type_id]\"]",
+    "$client_el":"select[name=\"invoices[client_id]\"]",
+    "$project_el":"select[name=\"invoices[project_id]\"]",
+    "$description_el":"#addedit-invoice-dialog > div > form > fieldset:nth-child(1) > textarea",
+    "$jurisdiction_el":"#invoice_jurisdiction",
+    "$tax_Code_el":"#invoice_taxcode",
+    "$close_button":"body > div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable > div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix > div > button:nth-child(2)",
+    "$save_button":"body > div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable > div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix > div > button:nth-child(1)"
+}

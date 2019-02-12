@@ -17,6 +17,16 @@ class InvoicePage extends Helper {
       return false;
     }
   }
+
+async clickCreateInvoiceButton(){
+  try{
+    await this.waitForElement(invoice.$create_invoice_button);
+    await this.clickButton(invoice.$create_invoice_button);
+  }catch(e){
+    console.error(`Can not click "Create Invoice" button. ${e}`);
+  }
+}
+
 }
 
 export default InvoicePage;

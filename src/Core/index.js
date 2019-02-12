@@ -115,12 +115,12 @@ class Core {
     }
   }
 
-  async getSelectedValue(el, option) {
+  async getSelectedValue(el, value) {
     try {
-      const query = `document.querySelector('${el}').options[document.querySelector('${el}').selectedIndex].text = "${option}"`;
+      const query = `$('${el}').val(${value}).change()`;
       await this.driver.executeScript(query);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }
 }
