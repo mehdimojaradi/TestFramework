@@ -1,11 +1,10 @@
 import InvoicePage from "./index";
 import invoice from "../Elements/Invoice";
 
-class GeneralEditPage extends InvoicePage {
-    constructor() {
+class POEditPage extends InvoicePage {
+    constructor () {
         super();
     }
-
 }
 
-export default GeneralEditPage;
+export default POEditPage;
