@@ -11,7 +11,7 @@ beforeAll(async()=>{
 });
 
 afterAll(async()=>{
-    // generalCratePage.closeDriver();
+    generalCratePage.closeDriver();
 });
 
 beforeEach(async()=>{
@@ -40,8 +40,8 @@ it.only("Should save general invoice", async ()=>{
     await generalCratePage.waitForElement(generalCreate.$project_el);
     await generalCratePage.getSelectedValue(generalCreate.$project_el,"3524");
     await generalCratePage.fillElementByCss(generalCreate.$description_el, "Description");
-    await generalCratePage.getSelectedValue(generalCreate.$jurisdiction_el,"1");
-    await generalCratePage.setDelay(1000);
+    // await generalCratePage.getSelectedValue(generalCreate.$jurisdiction_el,"1");
+    // await generalCratePage.setDelay(1000);
     // await generalCratePage.getSelectedValue(generalCreate.$tax_Code_el,"1");
     // await generalCratePage.clickButton(generalCreate.$save_button);
 });
