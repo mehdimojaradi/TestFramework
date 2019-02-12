@@ -19,7 +19,7 @@ describe("PO edit invoice", () => {
         await poEditPage.gotoPage(invoice.url);
     });
 
-    it("should signin", () => {
-
+    it("should signin", async () => {
+        
     });
 });
