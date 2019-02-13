@@ -1,3 +1,6 @@
 {
-    "url": "purchaseorders"
+    "url": "purchaseorders",
+    "$search_button": "#search_po_submit",
+    "$id": "#po-search-id",
+    "$number_link": "#purchase-orders-list > table > tbody > tr > td:nth-child(1) > div > a"
 }

@@ -1,24 +1,27 @@
-import PurchaseOrdersPage from "../PageObjects";
-import purchaseOrders from "../Elements/PurchaseOrders";
+import PurchaseOrderPage from "../PageObjects";
+import purchaseOrder from "../Elements/PurchaseOrders";
 
 describe("Purchase Orders", () => {
-    let purchaseOrdersPage;
+    let purchaseOrderPage;
   
     beforeAll(async () => {
-      purchaseOrdersPage = new PurchaseOrdersPage();
-      await purchaseOrdersPage.signIn(purchaseOrders.url);
+      purchaseOrderPage = new PurchaseOrderPage();
+      await purchaseOrderPage.signIn(purchaseOrder.url);
     });
   
     afterAll(() => {
-      purchaseOrdersPage.closeDriver();
+      purchaseOrderPage.closeDriver();
     });
   
     beforeEach(async () => {
-      await purchaseOrdersPage.gotoPage(purchaseOrders.url);
+      await purchaseOrderPage.gotoPage(purchaseOrder.url);
     });
 
-    it("", () => {
-
+    it("should find po number", async () => {
+        let id = '55782';
+        await purchaseOrderPage.findPurchaseOrderBy(id);
+        
+        await purchaseOrderPage.waitForElement(purchaseOrder.$number_link);
+        await purchaseOrderPage.clickButton(purchaseOrder.$number_link);
     });
 });
-  
