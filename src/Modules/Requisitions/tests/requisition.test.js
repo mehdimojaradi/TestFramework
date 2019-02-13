@@ -30,6 +30,6 @@ describe("Requisition", () => {
     await requisitionPage.waitForElement(requisition.$number_link);
     const $el = await requisitionPage.getElementText(requisition.$number_link);
     await expect($el.trim()).toEqual(id);
-  }); 
-  
+  });
+
 });

@@ -59,7 +59,7 @@ class Core {
     }
   }
 
-  async hasClass(el){
+  async hasClass(el) {
     try {
       const $el = await this.driver.findElement(By.className(el));
       return await $el.isDisplayed();
@@ -96,7 +96,7 @@ class Core {
   async getBrowserUrl() {
     try {
       let $el;
-      await this.driver.getCurrentUrl().then(function(currentUrl) {
+      await this.driver.getCurrentUrl().then(function (currentUrl) {
         $el = currentUrl;
       });
       return $el;
@@ -122,6 +122,12 @@ class Core {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  selectFromDropdown(el, value) {
+    const valueSelected = `${el} option[value='${value}']`;
+    this.clickButton(el);
+    this.clickButton(valueSelected);
   }
 }
 

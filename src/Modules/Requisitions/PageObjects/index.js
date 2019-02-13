@@ -18,27 +18,27 @@ class RequisitionPage extends Helper {
     }
   }
 
-async clickCreateRequisitionButton(){
-  try{
-    await this.waitForElement(requisition.$create_requisition_button);
-    await this.clickButton(requisition.$create_requisition_button);
-  }catch(e){
-    console.error(`Can not click "Create requisition" button. ${e}`);
+  async clickCreateRequisitionButton() {
+    try {
+      await this.waitForElement(requisition.$create_requisition_button);
+      await this.clickButton(requisition.$create_requisition_button);
+    } catch (e) {
+      console.error(`Can not click "Create requisition" button. ${e}`);
+    }
   }
-}
 
   async openRequisition(number) {
     try {
-        await this.findRequisitionBy(number);
-        await this.waitForElement(requisition.$number_link);
-        await this.clickButton(requisition.$number_link);
-        return true;
+      await this.findRequisitionBy(number);
+      await this.waitForElement(requisition.$number_link);
+      await this.clickButton(requisition.$number_link);
+      return true;
     } catch (e) {
-        console.error(`Can not search. ${e}`);
-        return false;
+      console.error(`Can not search. ${e}`);
+      return false;
     }
   }
-  
+
 }
 
 export default RequisitionPage;
