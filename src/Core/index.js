@@ -115,15 +115,6 @@ class Core {
     }
   }
 
-  async getSelectedValue(el, value) {
-    try {
-      const query = `$('${el}').val(${value}).change()`;
-      await this.driver.executeScript(query);
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
   selectFromDropdown(el, value) {
     const valueSelected = `${el} option[value='${value}']`;
     this.clickButton(el);

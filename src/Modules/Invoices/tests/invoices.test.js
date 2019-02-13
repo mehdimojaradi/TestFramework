@@ -33,10 +33,4 @@ describe("Invoices", () => {
     await invoicePage.setDelay(3000);
   });
  
-  it("should get dropdown value", async () => {
-    const $client_option = "13";
-    await invoicePage.waitForElement(invoice.$client_el);
-    await invoicePage.getSelectedValue(invoice.$client_el, $client_option);
-  });
-  
 });

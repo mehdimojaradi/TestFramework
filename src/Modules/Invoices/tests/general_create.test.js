@@ -11,7 +11,7 @@ describe("Create General Invoice", () => {
     });
 
     afterAll(async () => {
-        // generalCratePage.closeDriver();
+        generalCratePage.closeDriver();
     });
 
     beforeEach(async () => {
