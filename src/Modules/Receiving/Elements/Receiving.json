@@ -1,0 +1,5 @@
+{
+  "url": "receiving",
+  "$title": "#area > div.content > h1",
+  "$first_receiving_item": "#ui-tabs-1 > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > a"
+}
