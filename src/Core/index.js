@@ -1,15 +1,15 @@
 "use strict";
 
 import "chromedriver";
-import { Builder, By, Key, until } from "selenium-webdriver";
-
-const browser = "chrome";
-const baseUrl = "http://devqa.rdsysco.com/";
+import { By, until } from "selenium-webdriver";
+import WebBrowserFactory from "./WebBrowserFactory";
+import Profile from "./Profile";
 
 class Core {
   constructor() {
-    this.driver = new Builder().forBrowser(browser).build();
-    this.setJestTimeout(30000);
+    this.webBrowser = new WebBrowserFactory();
+    this.driver = this.webBrowser.create(Profile.browser);
+    jest.setTimeout(30000);
   }
 
   closeDriver() {
@@ -59,7 +59,7 @@ class Core {
     }
   }
 
-  async hasClass(el){
+  async hasClass(el) {
     try {
       const $el = await this.driver.findElement(By.className(el));
       return await $el.isDisplayed();
@@ -96,7 +96,7 @@ class Core {
   async getBrowserUrl() {
     try {
       let $el;
-      await this.driver.getCurrentUrl().then(function(currentUrl) {
+      await this.driver.getCurrentUrl().then(function (currentUrl) {
         $el = currentUrl;
       });
       return $el;
@@ -107,7 +107,7 @@ class Core {
 
   async gotoPage(url) {
     try {
-      await this.driver.get(`${baseUrl}${url}`);
+      await this.driver.get(`${Profile.baseUrl}${url}`);
       return true;
     } catch (e) {
       console.error(`Can not go to page '${url}'. ${e.message}`);
@@ -122,6 +122,12 @@ class Core {
     } catch (e) {
       console.error(e);
     }
+  }
+
+  selectFromDropdown(el, value) {
+    const valueSelected = `${el} option[value='${value}']`;
+    this.clickButton(el);
+    this.clickButton(valueSelected);
   }
 }
 
