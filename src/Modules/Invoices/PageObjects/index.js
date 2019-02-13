@@ -17,6 +17,28 @@ class InvoicePage extends Helper {
       return false;
     }
   }
+
+async clickCreateInvoiceButton(){
+  try{
+    await this.waitForElement(invoice.$create_invoice_button);
+    await this.clickButton(invoice.$create_invoice_button);
+  }catch(e){
+    console.error(`Can not click "Create Invoice" button. ${e}`);
+  }
+}
+
+  async openInvoice(number) {
+    try {
+        await this.findInvoiceBy(number);
+        await this.waitForElement(invoice.$number_link);
+        await this.clickButton(invoice.$number_link);
+        return true;
+    } catch (e) {
+        console.error(`Can not search. ${e}`);
+        return false;
+    }
+  }
+  
 }
 
 export default InvoicePage;

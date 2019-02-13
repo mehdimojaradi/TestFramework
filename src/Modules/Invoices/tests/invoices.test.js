@@ -34,7 +34,7 @@ describe("Invoices", () => {
   });
  
   it("should get dropdown value", async () => {
-    const $client_option = "AltaGas Processing Partnership";
+    const $client_option = "13";
     await invoicePage.waitForElement(invoice.$client_el);
     await invoicePage.getSelectedValue(invoice.$client_el, $client_option);
   });

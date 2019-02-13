@@ -1,0 +1,9 @@
+{
+  "url": "requisitions",
+  "$title": "div.requisitions-content > h1",
+  "$number_link": "#requisitions-list > table > tbody > tr > td:nth-child(1) > div > a",
+  "$id": "#requisition_search_input",
+  "$search_button": "#area > div.content > div > fieldset:nth-child(3) > form > input[type='submit']:nth-child(19)",
+  "$reset_all_filters_button": "#area > div.content > div > fieldset:nth-child(3) > form > input[type='submit']:nth-child(19)",
+  "$create_requisition_button": "#area > div.content > div > ul > li:nth-child(1) > a"
+}
