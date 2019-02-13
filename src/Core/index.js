@@ -1,23 +1,14 @@
 "use strict";
 
 import "chromedriver";
-import { Builder, By, Key, until } from "selenium-webdriver";
-const chrome = require("selenium-webdriver/chrome");
-const firefox = require("selenium-webdriver/firefox");
-
-const browser = "chrome";
-const baseUrl = "http://devqa.rdsysco.com/";
-const screen = {
-  width: 1280,
-  height: 1024
-};
+import { By, until } from "selenium-webdriver";
+import WebBrowserFactory from "./WebBrowserFactory";
+import Profile from "./Profile";
 
 class Core {
   constructor() {
-    this.driver = new Builder()
-      .forBrowser(browser)
-      .setChromeOptions(new chrome.Options().headless().windowSize(screen))
-      .build();
+    this.webBrowser = new WebBrowserFactory();
+    this.driver = this.webBrowser.create(Profile.browser);
     jest.setTimeout(30000);
   }
 
@@ -116,7 +107,7 @@ class Core {
 
   async gotoPage(url) {
     try {
-      await this.driver.get(`${baseUrl}${url}`);
+      await this.driver.get(`${Profile.baseUrl}${url}`);
       return true;
     } catch (e) {
       console.error(`Can not go to page '${url}'. ${e.message}`);
