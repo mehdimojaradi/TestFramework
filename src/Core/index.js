@@ -1,7 +1,7 @@
 "use strict";
 
 import "chromedriver";
-import { By, until } from "selenium-webdriver";
+import { By, until, Key } from "selenium-webdriver";
 import WebBrowserFactory from "./WebBrowserFactory";
 import Profile from "./Profile";
 
@@ -21,6 +21,15 @@ class Core {
       let $el = await this.inspectElement(el);
       await $el.clear();
       await $el.sendKeys(value);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async pressEnter(el) {
+    try {
+      let $el = await this.inspectElement(el);
+      await $el.sendKeys(Key.ENTER);
     } catch (e) {
       console.error(e);
     }
@@ -119,6 +128,13 @@ class Core {
     const valueSelected = `${el} option[value='${value}']`;
     this.clickButton(el);
     this.clickButton(valueSelected);
+  }
+
+  async extractFromJavaScript(javascriptExpression) {
+    let javascriptResult = await this.driver.executeScript(
+      javascriptExpression
+    );
+    return javascriptResult;
   }
 }
 
