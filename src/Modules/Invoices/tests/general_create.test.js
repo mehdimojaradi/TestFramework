@@ -31,7 +31,7 @@ describe("Create General Invoice", () => {
         await generalCratePage.clickButton(generalCreate.$close_button);
     });
 
-    it.only("Should save general invoice", async () => {
+    it("Should save general invoice", async () => {
         await generalCratePage.clickCreateInvoiceButton();
         await generalCratePage.waitForElement(generalCreate.$ivoice_Type_el);
         generalCratePage.selectFromDropdown(generalCreate.$ivoice_Type_el, "2");
