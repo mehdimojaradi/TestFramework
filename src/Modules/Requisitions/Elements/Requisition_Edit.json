@@ -1,3 +1,9 @@
 {
-    "$close_button": "body > div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable > div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix > div > button"
+    "$close_button": "body > div.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable.ui-resizable > div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix > div > button",
+    "$edit_button": "input.fieldset-button.requisition_edit",
+    "$requisition_type_el": "#form-requisition-type-id",
+    "$add_bill_of_material_button": ".add-bill-of-material",
+    "$add_bom_dialog_title": "#ui-dialog-title-add-bom-dialog",
+    "$add_bom_dialog_close_button": "div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix > div > button:nth-child(2)",
+    "$add_bom_dialog_add_button":   "div.ui-dialog-buttonpane.ui-widget-content.ui-helper-clearfix > div > button:nth-child(1)"
 }

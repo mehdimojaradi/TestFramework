@@ -18,8 +18,8 @@ class Core {
 
   async fillElementByCss(el, value) {
     try {
+      await this.waitForElement(el);
       let $el = await this.inspectElement(el);
-      await $el.clear();
       await $el.sendKeys(value);
     } catch (e) {
       console.error(e);
@@ -28,6 +28,7 @@ class Core {
 
   async getElementText(el) {
     try {
+      await this.waitForElement(el);
       const $el = await this.inspectElement(el);
       return $el.getText();
     } catch (e) {
@@ -36,6 +37,7 @@ class Core {
   }
 
   async clickButton(el) {
+    await this.waitForElement(el);
     await this.inspectElement(el).click();
   }
 
@@ -61,6 +63,7 @@ class Core {
 
   async hasClass(el) {
     try {
+
       const $el = await this.driver.findElement(By.className(el));
       return await $el.isDisplayed();
     } catch (e) {
@@ -68,7 +71,17 @@ class Core {
     }
   }
 
-  async IsDisplayed(el) {
+  async isElementHidden(el) {
+    const $el = await this.isCurrentlyDisplayed(el);
+    return !$el;
+  }
+
+  async isElementDisplayed(el) {
+    await this.waitForElement(el);
+    return await this.isCurrentlyDisplayed(el);
+  }
+
+  async isCurrentlyDisplayed(el) {
     try {
       const $el = await this.inspectElement(el);
       return await $el.isDisplayed();
@@ -117,6 +130,7 @@ class Core {
 
   async getSelectedValue(el, value) {
     try {
+      await this.waitForElement(el);
       const query = `$('${el}').val(${value}).change()`;
       await this.driver.executeScript(query);
     } catch (e) {
@@ -124,10 +138,11 @@ class Core {
     }
   }
 
-  selectFromDropdown(el, value) {
+  async selectFromDropdown(el, value) {
     const valueSelected = `${el} option[value='${value}']`;
-    this.clickButton(el);
-    this.clickButton(valueSelected);
+    await this.waitForElement(el);
+    await this.clickButton(el);
+    await this.clickButton(valueSelected);
   }
 }
 

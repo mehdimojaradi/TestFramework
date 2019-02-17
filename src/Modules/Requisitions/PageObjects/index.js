@@ -1,5 +1,6 @@
 import Helper from "../../../Core/Helper";
 import requisition from "../Elements/Requisition";
+import requisitionEdit from "../Elements/Requisition_Edit";
 
 class RequisitionPage extends Helper {
   constructor() {
@@ -8,7 +9,6 @@ class RequisitionPage extends Helper {
 
   async findRequisitionBy(number) {
     try {
-      await this.waitForElement(requisition.$id);
       await this.fillElementByCss(requisition.$id, number);
       await this.clickButton(requisition.$search_button);
       return true;
@@ -20,7 +20,6 @@ class RequisitionPage extends Helper {
 
   async clickCreateRequisitionButton() {
     try {
-      await this.waitForElement(requisition.$create_requisition_button);
       await this.clickButton(requisition.$create_requisition_button);
     } catch (e) {
       console.error(`Can not click "Create requisition" button. ${e}`);
@@ -30,8 +29,18 @@ class RequisitionPage extends Helper {
   async openRequisition(number) {
     try {
       await this.findRequisitionBy(number);
-      await this.waitForElement(requisition.$number_link);
       await this.clickButton(requisition.$number_link);
+      return true;
+    } catch (e) {
+      console.error(`Can not search. ${e}`);
+      return false;
+    }
+  }
+
+  async clickEditButton(invoiceNo) {
+    try {
+      await this.openRequisition(invoiceNo);
+      await this.clickButton(requisitionEdit.$edit_button);
       return true;
     } catch (e) {
       console.error(`Can not search. ${e}`);
