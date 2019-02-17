@@ -19,7 +19,6 @@ describe("Create General Invoice", () => {
     });
 
     it("should sign in", async () => {
-        await generalCratePage.waitForElement(invoice.$title);
         const $el = await generalCratePage.getElementText(invoice.$title);
         await expect($el).toEqual("Invoices");
         await expect(await generalCratePage.getBrowserUrl()).toContain(invoice.url);
@@ -27,21 +26,18 @@ describe("Create General Invoice", () => {
 
     it("Should close dialog", async () => {
         await generalCratePage.clickCreateInvoiceButton();
-        await generalCratePage.waitForElement(generalCreate.$close_button);
         await generalCratePage.clickButton(generalCreate.$close_button);
     });
 
     it("Should save general invoice", async () => {
         await generalCratePage.clickCreateInvoiceButton();
-        await generalCratePage.waitForElement(generalCreate.$ivoice_Type_el);
         generalCratePage.selectFromDropdown(generalCreate.$ivoice_Type_el, "2");
         generalCratePage.selectFromDropdown(generalCreate.$client_el, "43");
         await generalCratePage.setDelay(3000);
-        await generalCratePage.waitForElement(generalCreate.$project_el);
         generalCratePage.selectFromDropdown(generalCreate.$project_el, "3524");
         await generalCratePage.fillElementByCss(generalCreate.$description_el, "Description");
         generalCratePage.selectFromDropdown(generalCreate.$jurisdiction_el, "1");
-        await generalCratePage.setDelay(1000);
+        await generalCratePage.setDelay(3000);
         generalCratePage.selectFromDropdown(generalCreate.$tax_Code_el, "1");
         await generalCratePage.clickButton(generalCreate.$save_button);
     });

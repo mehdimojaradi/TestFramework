@@ -2,19 +2,19 @@ import RequisitionEditPage from "../PageObjects/Requisition_Edit";
 import requisitionEdit from "../Elements/Requisition_Edit";
 import requisition from "../Elements/Requisition";
 
-describe("Requisitions Edit", ()=>{
+describe("Requisitions Edit", () => {
     let requisitionEditPage;
     const InvoiceNo = "REQ-22088";
-    beforeAll(async ()=>{
+    beforeAll(async () => {
         requisitionEditPage = new RequisitionEditPage();
         await requisitionEditPage.signIn(requisition.url);
     });
 
-    afterAll(()=>{
+    afterAll(() => {
         requisitionEditPage.closeDriver();
     });
 
-    beforeEach(async ()=>{
+    beforeEach(async () => {
         requisitionEditPage.gotoPage(requisition.url);
     });
 
@@ -23,14 +23,36 @@ describe("Requisitions Edit", ()=>{
         const $el = await requisitionEditPage.getElementText(requisition.$title);
         await expect($el).toEqual("Requisitions");
         await expect(await requisitionEditPage.getBrowserUrl()).toContain(requisition.url);
-      });
+    });
 
-      it("Should close dialog", async ()=>{        
+    it("Should close first dialog", async () => {
         await requisitionEditPage.openRequisition(InvoiceNo);
-        await requisitionEditPage.waitForElement(requisitionEdit.$close_button);
         await requisitionEditPage.clickButton(requisitionEdit.$close_button);
-        const isVisible_Dialog = await requisitionEditPage.IsDisplayed(requisitionEdit.$close_button);
-        await expect(isVisible_Dialog).toBeFalsy();
-      });
+        const isHidden_Dialog = await requisitionEditPage.isElementHidden(requisitionEdit.$close_button);
+        await expect(isHidden_Dialog).toBeTruthy();
+    });
+
+    it("Should view requisition in edit mode", async () => {
+        await requisitionEditPage.clickEditButton(InvoiceNo);
+        const $el = await requisitionEditPage.isElementDisplayed(requisitionEdit.$requisition_type_el);
+        await expect($el).toBeTruthy();
+    });
+
+    it("Should click add bill of material", async ()=>{
+        await requisitionEditPage.clickEditButton(InvoiceNo);
+        await requisitionEditPage.clickButton(requisitionEdit.$add_bill_of_material_button);
+        const $el = await requisitionEditPage.isElementDisplayed(requisitionEdit.$add_bom_dialog_title);
+        await expect($el).toBeTruthy();
+    });
+
+    it("Should close add bill of material dialog", async () =>{
+        await requisitionEditPage.clickEditButton(InvoiceNo);
+        await requisitionEditPage.clickButton(requisitionEdit.$add_bill_of_material_button);
+        await requisitionEditPage.clickButton(            requisitionEdit.$add_bom_dialog_close_button);
+        const isHidden_Dialog = await requisitionEditPage.isElementHidden(requisitionEdit.$add_bom_dialog_close_button);
+        await expect(isHidden_Dialog).toBeTruthy();
+    });
+
+   
 
 })
