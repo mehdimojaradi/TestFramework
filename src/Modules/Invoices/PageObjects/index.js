@@ -8,7 +8,6 @@ class InvoicePage extends Helper {
 
   async findInvoiceBy(number) {
     try {
-      await this.waitForElement(invoice.$id);
       await this.fillElementByCss(invoice.$id, number);
       await this.clickButton(invoice.$search_button);
       return true;
@@ -20,7 +19,6 @@ class InvoicePage extends Helper {
 
 async clickCreateInvoiceButton(){
   try{
-    await this.waitForElement(invoice.$create_invoice_button);
     await this.clickButton(invoice.$create_invoice_button);
   }catch(e){
     console.error(`Can not click "Create Invoice" button. ${e}`);
@@ -30,7 +28,6 @@ async clickCreateInvoiceButton(){
   async openInvoice(number) {
     try {
         await this.findInvoiceBy(number);
-        await this.waitForElement(invoice.$number_link);
         await this.clickButton(invoice.$number_link);
         return true;
     } catch (e) {

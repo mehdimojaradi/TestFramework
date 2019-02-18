@@ -18,7 +18,6 @@ describe("Requisition", () => {
   });
 
   it("should sign in", async () => {
-    await requisitionPage.waitForElement(requisition.$title);
     const $el = await requisitionPage.getElementText(requisition.$title);
     await expect($el).toEqual("Requisitions");
     await expect(await requisitionPage.getBrowserUrl()).toContain(requisition.url);
@@ -27,7 +26,6 @@ describe("Requisition", () => {
   it("should find requisition", async () => {
     let id = "REQ-22088";
     await requisitionPage.findRequisitionBy(id);
-    await requisitionPage.waitForElement(requisition.$number_link);
     const $el = await requisitionPage.getElementText(requisition.$number_link);
     await expect($el.trim()).toEqual(id);
   });
