@@ -3,11 +3,11 @@
   "$title": "#area > div.content > h1",
   "$po_number_input": "#po_number_input",
   "$view_completed_POs_link": "#area > div.content > div:nth-child(3) > a",
-  "$first_receiving_item_link": "a[href='/receiving/linelist/poId/55771']",
+  "$first_receiving_item_link": "table > tbody > tr:nth-child(1) > td:nth-child(1) > a",
   "$all_tab": "a[href='#ui-tabs-13']",
   
   "$receive_lines_for_po_dialog_title": "#ui-dialog-title-1",
   "$po_id_on_receive_lines_for_po_dialog": "table.full_width > tbody > tr:nth-of-type(1) > td",
-  "$first_receiving_item_division": "#ui-tabs-1 > div > table > tbody > tr:nth-child(1) > td:nth-child(3)",
+  "$first_receiving_item_division": "#ui-tabs-13 > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > a.text.dialoger",
   "$po_note_label": "tbody:nth-child(1) > tr:nth-child(10) > td"
 }
