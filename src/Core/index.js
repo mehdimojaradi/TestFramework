@@ -20,16 +20,17 @@ class Core {
     try {
       await this.waitForElement(el);
       let $el = await this.inspectElement(el);
+      await $el.clear();
       await $el.sendKeys(value);
     } catch (e) {
       console.error(e);
     }
   }
 
-  async pressEnter(el) {
+  async pressKey(el, value) {
     try {
       let $el = await this.inspectElement(el);
-      await $el.sendKeys(Key.ENTER);
+      await $el.sendKeys(value);
     } catch (e) {
       console.error(e);
     }
@@ -118,7 +119,7 @@ class Core {
   async getBrowserUrl() {
     try {
       let $el;
-      await this.driver.getCurrentUrl().then(function(currentUrl) {
+      await this.driver.getCurrentUrl().then(function (currentUrl) {
         $el = currentUrl;
       });
       return $el;
@@ -152,6 +153,15 @@ class Core {
     await this.waitForElement(el);
     await this.clickButton(el);
     await this.clickButton(valueSelected);
+  }
+
+  async selectFromChosen(el, value) {
+    try {
+      await this.fillElementByCss(el, value);
+      await this.pressKey(el, Key.ENTER);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   async extractFromJavaScript(javascriptExpression) {

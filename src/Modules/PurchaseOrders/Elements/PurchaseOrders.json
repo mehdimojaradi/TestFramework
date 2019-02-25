@@ -2,5 +2,6 @@
     "url": "purchaseorders",
     "$search_button": "#search_po_submit",
     "$id": "#po-search-id",
-    "$number_link": "#purchase-orders-list > table > tbody > tr > td:nth-child(1) > div > a"
+    "$number_link": "#purchase-orders-list > table > tbody > tr > td:nth-child(1) > div > a",
+    "$project_chosen": "#project_selected_chosen > ul > li > input"
 }

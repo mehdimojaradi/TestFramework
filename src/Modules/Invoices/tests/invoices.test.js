@@ -28,7 +28,6 @@ describe("Invoices", () => {
     await invoicePage.findInvoiceBy(id);
     const $el = await invoicePage.getElementText(invoice.$number_link);
     await expect($el.trim()).toEqual(id);
-    await invoicePage.setDelay(3000);
   });
- 
+
 });

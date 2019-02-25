@@ -38,21 +38,21 @@ describe("Requisitions Edit", () => {
         await expect($el).toBeTruthy();
     });
 
-    it("Should click add bill of material", async ()=>{
+    it("Should click add bill of material", async () => {
         await requisitionEditPage.clickEditButton(InvoiceNo);
         await requisitionEditPage.clickButton(requisitionEdit.$add_bill_of_material_button);
         const $el = await requisitionEditPage.isElementDisplayed(requisitionEdit.$add_bom_dialog_title);
         await expect($el).toBeTruthy();
     });
 
-    it("Should close add bill of material dialog", async () =>{
+    it("Should close add bill of material dialog", async () => {
         await requisitionEditPage.clickEditButton(InvoiceNo);
         await requisitionEditPage.clickButton(requisitionEdit.$add_bill_of_material_button);
-        await requisitionEditPage.clickButton(            requisitionEdit.$add_bom_dialog_close_button);
+        await requisitionEditPage.clickButton(requisitionEdit.$add_bom_dialog_close_button);
         const isHidden_Dialog = await requisitionEditPage.isElementHidden(requisitionEdit.$add_bom_dialog_close_button);
         await expect(isHidden_Dialog).toBeTruthy();
     });
 
-   
+
 
 })

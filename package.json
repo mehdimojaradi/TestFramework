@@ -6,7 +6,9 @@
   "directories": {
     "test": "src/Modules"
   },
-  "dependencies": {},
+  "dependencies": {
+    "npm": "^6.8.0"
+  },
   "author": "RDSysCo QA Team",
   "license": "ISC",
   "scripts": {
