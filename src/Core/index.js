@@ -164,6 +164,15 @@ class Core {
     }
   }
 
+  async selectFromAutocomplete(el, value, listbox_el) {
+    try {
+      await this.fillElementByCss(el, value);;
+      await this.clickButton(listbox_el);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   async extractFromJavaScript(javascriptExpression) {
     let javascriptResult = await this.driver.executeScript(
       javascriptExpression
